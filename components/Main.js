@@ -1,14 +1,19 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { connect } from 'react-redux'
 
-export default class Main extends React.Component {
-  constructor() {
-    super()
-    this.state = {}
-  }
-  render() {
-    return (
-      <div>This is the main component</div>
-    )
+const Main = ({todos}) => {
+  return (
+    <div>
+      <h1>React-Redux Todo</h1>
+      {todos.map(todo => <p key={todo}>{todo}</p>)}
+    </div>
+  )
+}
+
+function mapStateToProps(todos) {
+  return {
+    todos
   }
 }
+
+export default connect(mapStateToProps)(Main)
