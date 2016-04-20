@@ -1,9 +1,5 @@
 import { FILTERS, ADD_TODO, COMPLETE_TODO, DELETE_TODO } from './actions'
-
-const initialState = {
-  visibilityFilter: FILTERS.SHOW_ALL,
-  todos: []
-}
+import { combineReducers } from 'redux'
 
 let nextTodoId = 1
 
@@ -24,24 +20,23 @@ function todosReducer(state = [], action) {
           return todo.id !== action.id
         })
       })
-  }
-}
-
-export default function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case SET_VISIBILITY_FILTER:
-      return Object.assign({}, state, {
-        visibilityFilter: action.filter
-      })
-    case ADD_TODO:
-    case COMPLETE_TODO:
-    case DELETE_TODO:
-      return Object.assign({}, state, {
-        todos: todosReducer(state.todos, action)
-        ]
-      })
-
     default:
       return state
   }
 }
+
+function visibilityFilterReducer(state = FILTERS.SHOW_ALL, action) {
+  switch(action.type) {
+    case SET_VISIBILITY_FILTER:
+      return action.filter
+    default:
+      return state
+  }
+}
+
+const rootReducer = combineReducers({
+    visibilityFilterReducer,
+    todosReducer
+})
+
+export default rootReducer
