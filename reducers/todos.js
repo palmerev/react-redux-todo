@@ -1,7 +1,14 @@
-export default function todosReducer(state = ['Need moar code!'], action) {
+import { FILTERS, ADD_TODO } from './actions'
+
+const initialState = {
+  visibilityFilter: FILTERS.SHOW_ALL,
+  todos: []
+}
+
+export default function todosReducer(state = initialState, action) {
   switch (action.type) {
-    case 'addTodo':
-      return [...state, action.todo]
+    case ADD_TODO:
+      return [...state, action.text]
     default:
       return state
   }
