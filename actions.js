@@ -1,6 +1,6 @@
 export const ADD_TODO = 'ADD_TODO'
 export const DELETE_TODO = 'DELETE_TODO'
-export const MARK_COMPLETE = 'MARK_COMPLETE'
+export const TOGGLE_TODO = 'TOGGLE_TODO'
 export const SET_VISIBILITY_FILTER = 'SET_VISIBILITY_FILTER'
 export const FILTERS = {
   SHOW_ALL: 'SHOW_ALL',
@@ -21,9 +21,9 @@ export default {
       id,
     }
   },
-  markComplete: function (id) {
+  toggleTodo: function (id) {
     return {
-      type: MARK_COMPLETE,
+      type: TOGGLE_TODO,
       id,
     }
   },

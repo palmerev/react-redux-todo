@@ -1,4 +1,4 @@
-import { FILTERS, ADD_TODO, COMPLETE_TODO, DELETE_TODO } from './actions'
+import { FILTERS, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from './actions'
 import { combineReducers } from 'redux'
 
 let nextTodoId = 1
@@ -10,10 +10,10 @@ function todosReducer(state = [], action) {
         ...state,
         { text: action.text, completed: false, id: nextTodoId++ }
       ]
-    case COMPLETE_TODO:
+    case TOGGLE_TODO:
       return state.map((todo) => {
         return todo.id === action.id ?
-          Object.assign({}, todo, { completed: true }) : todo
+          Object.assign({}, todo, { completed: !todo.completed }) : todo
       })
     case DELETE_TODO:
       return state.filter((todo) => {
