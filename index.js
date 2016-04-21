@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import Main from './components/Main'
+import App from './components/App'
 import todos from './reducers/todos'
 
 let store = createStore(todos)
@@ -12,7 +12,7 @@ let store = createStore(todos)
 
 ReactDOM.render(
   <Provider store={store}>
-    <Main />
+    <App />
   </Provider>,
   document.getElementById('app')
 )
