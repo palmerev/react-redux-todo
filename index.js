@@ -5,9 +5,9 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import App from './components/App'
-import todos from './reducers/todos'
+import rootReducer from './reducers/index'
 
-let store = createStore(todos)
+let store = createStore(rootReducer)
 
 
 ReactDOM.render(
