@@ -1,4 +1,4 @@
-import { FILTERS, ADD_TODO, TOGGLE_TODO, DELETE_TODO } from './actions'
+import { FILTERS, ADD_TODO, TOGGLE_TODO, DELETE_TODO, SET_VISIBILITY_FILTER } from '../actions'
 import { combineReducers } from 'redux'
 
 let nextTodoId = 1
@@ -19,7 +19,6 @@ function todosReducer(state = [], action) {
       return state.filter((todo) => {
           return todo.id !== action.id
         })
-      })
     default:
       return state
   }
@@ -28,15 +27,15 @@ function todosReducer(state = [], action) {
 function visibilityFilterReducer(state = FILTERS.SHOW_ALL, action) {
   switch(action.type) {
     case SET_VISIBILITY_FILTER:
-      return action.filter
+      return action.visibilityFilter
     default:
       return state
   }
 }
 
 const rootReducer = combineReducers({
-    visibilityFilterReducer,
-    todosReducer
+    visibilityFilter: visibilityFilterReducer,
+    todos: todosReducer
 })
 
 export default rootReducer

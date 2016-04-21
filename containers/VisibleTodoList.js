@@ -2,7 +2,6 @@ import { connect } from 'react-redux'
 import TodoList from '../components/TodoList'
 import actions from '../actions'
 
-const { markComplete } = actions
 const getVisibleTodos = (todos, filter) => {
   switch (filter) {
     case 'SHOW_ALL':
@@ -12,28 +11,28 @@ const getVisibleTodos = (todos, filter) => {
     case 'SHOW_ACTIVE':
       return todos.filter(t => !t.completed)
     default:
-      console.log("getVisibleTodos defaulted")
+      console.error("getVisibleTodos defaulted")
       return todos
   }
 }
 
+// React prop: Redux state
 const mapStateToProps = (state) => {
   return {
-    // React prop: Redux state
     todos: getVisibleTodos(state.todos, state.visibilityFilter)
   }
 }
 
+// React prop: Redux dispatch
 const mapDispatchToProps = (dispatch) => {
   return {
-    // React prop: Redux dispatch
     onTodoClick: (id) => {
-      dispatch(markComplete(id))
+      dispatch(actions.toggleTodo(id))
     }
   }
 }
 
-const VisibleTodoList = connect (
+const VisibleTodoList = connect(
   mapStateToProps,
   mapDispatchToProps
 )(TodoList)

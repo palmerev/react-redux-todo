@@ -8,7 +8,7 @@ export const FILTERS = {
   SHOW_ACTIVE: 'SHOW_ACTIVE',
 }
 
-export default {
+const actions = {
   addTodo: function (text) {
     return {
       type: ADD_TODO,
@@ -34,3 +34,5 @@ export default {
     }
   }
 }
+
+export default actions
